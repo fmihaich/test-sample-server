@@ -38,7 +38,6 @@ def server_main():
         server_config = Config(args.config)
         _initialize_logging(server_config.log_path, server_config.log_level)
         _load_db(server_config.db_path)
-        print("-------------- Running TEST SAMPLE SERVER --------------")
         run(host=server_config.server_host, port=server_config.server_port, debug=True)
     except LoadConfigError:
         print('Config could not be loaded from {0}.\nCheck if the file exist in local machine.\n'.format(args.config))

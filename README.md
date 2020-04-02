@@ -21,7 +21,7 @@ docker rmi test_sample_server:local
 
 In order to run the server, after its image creation, execute the following command:
 ```bash
-docker run --name -p 8080:8080 test_sample_server:local script/run 
+docker run --name test_sample_server -p 8080:8080 test_sample_server:local script/run
 ```
 Note that the command that actually runs the server is **script/run**
 
@@ -32,7 +32,7 @@ docker stop $(docker ps -a -f 'name=test_sample_server' -q --no-trunc)
 
 To remove the server container, execute the following command:
 ```bash
-docker rm $(docker ps -a -f 'name=test_sample_server' -q --no-trunc)
+docker rm -f $(docker ps -a -f 'name=test_sample_server' -q --no-trunc)
 ```
 
 ## Manually check if server API is working

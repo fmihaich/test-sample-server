@@ -5,3 +5,4 @@
 .project
 .pydevproject
 test_results/
+test_sample_server/server.log
