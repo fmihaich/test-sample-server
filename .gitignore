@@ -4,5 +4,6 @@
 .pytest_cache
 .project
 .pydevproject
+__pycache__
 test_results/
 test_sample_server/server.log
