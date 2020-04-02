@@ -1,0 +1,7 @@
+.coverage
+.idea/
+.cache
+.pytest_cache
+.project
+.pydevproject
+test_results/

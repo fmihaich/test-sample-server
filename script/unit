@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#Install unit test requirements
+
+pip3 install -r test_sample_server/tests/requirements.txt
+
+# Run unit tests
+find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+python3 -m pytest --noconftest -v -o junit_family=xunit1 --junitxml=test_results/unit/unit_test_results.xml --cov-report term-missing --cov-report xml --cov-branch --cov=test_sample_server test_sample_server
+
+if [[ $? = 0 ]]; then
+    echo "** UNIT TESTS PASSED **"
+else
+    echo "** UNIT TESTS FAILED **"
+    exit 1
+fi
+
+mkdir -p test_results/cobertura
+mv coverage.xml test_results/cobertura/coverage.xml
