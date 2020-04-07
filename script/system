@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "####################################################"
+echo "Note:"
+echo "* To run server system tests you will need to have:"
+echo "  - Server image tagged according definition in system_tests.yml compose file (default value: test_sample_server:local)"
+echo "  - Test runner tagged image according definition in system_tests.yml compose file (default value: test_sample_test_runner:local)"
+echo "* To create server image just build it using this repo Dockerfile"
+echo "* To create test runner image build it using this repo: https://github.com/fmihaich/test_sample_test_runner.git"
+echo "####################################################"
+
+echo "Sttoping & starting docker container"
+docker-compose -f system_tests.yml down -v
+docker-compose -f system_tests.yml up &
+
+sleep 3
+
+echo "Running system tests"
+docker-compose -f system_tests.yml exec test_sample_test_runner script/run
+
+echo "Stopping container"
+docker-compose -f system_tests.yml down -v
+

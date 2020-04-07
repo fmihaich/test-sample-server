@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  test_sample_server:
+    image: test_sample_server:local
+    ports:
+    - "8080:8080"
+    command: script/run
+  test_sample_test_runner:
+    image: test_sample_test_runner:local
+    environment:
+      - SERVER_HOST=test_sample_server
+      - SERVER_PORT=8080
+    tty: true
+    volumes:
+    - ./tests:/test_sample_source/tests
